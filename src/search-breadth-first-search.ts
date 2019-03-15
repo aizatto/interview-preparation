@@ -15,7 +15,7 @@
  */
 
 /* eslint-disable */
-/// <reference types="./tree" />
+/// <reference types="./data-structures" />
 /* eslint-enable */
 
 function BreadthFirstSearch(

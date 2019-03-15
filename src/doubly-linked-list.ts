@@ -1,5 +1,10 @@
+/**
+ *
+ * https://github.com/trekhleb/javascript-algorithms/tree/master/src/data-structures/doubly-linked-list
+ */
+
 /* eslint-disable */
-/// <reference types="./tree" />
+/// <reference types="./data-structures" />
 /* eslint-enable */
 
 /**
@@ -104,11 +109,15 @@ export class DoublyLinkedList {
     return `${values.toString()  }\n${  debug.toString()}`;;
   }
 
-  public toStdout() {
-    const head = this.head ? this.head : {value: null};
-    console.log(`head: ${head.value}`);
-    const tail = this.tail ? this.tail : {value: null};
-    console.log(`tail: ${tail.value}`);
+  public toArray(): number[] {
+    let node = this.head;
+    const values = [];
+    while (node) {
+      values.push(node.value);
+      node = node.next
+    }
+
+    return values;
   }
 
 }

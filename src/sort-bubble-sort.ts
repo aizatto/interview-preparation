@@ -19,7 +19,7 @@
  * https://www.youtube.com/watch?v=6Gv8vg0kcHc&index=27&t=0s&list=PLLXdhg_r2hKA7DPDsunoDZ-Z769jWn4R8
  */
 
-function BubbleSort(originalArray: Number[]) {
+export function BubbleSort(originalArray: Number[]) {
   const array = [...originalArray];
 
   for (let i = 0; i < array.length; i++) {
@@ -34,7 +34,3 @@ function BubbleSort(originalArray: Number[]) {
 
   return array;
 }
-
-console.log(BubbleSort([1, 2, 3, 4, 5]));
-console.log(BubbleSort([5, 4, 3, 2, 1]));
-console.log(BubbleSort([3, 4, 1, 2, 5]));

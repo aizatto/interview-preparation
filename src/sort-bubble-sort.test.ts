@@ -1,3 +1,4 @@
+/* eslint-env jest/globals */
 import { BubbleSort } from './sort-bubble-sort';
 
 const BEST_CASE = [1, 2, 3, 4, 5];
@@ -16,6 +17,6 @@ test('Bubble Sort: Worst Case', () => {
 });
 
 test('Bubble Sort: Average Case', () => {
-  const actual = BubbleSort(WORST_CASE);
+  const actual = BubbleSort(AVERAGE_CASE);
   expect(actual).toEqual(SORTED);
 });

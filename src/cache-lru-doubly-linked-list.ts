@@ -19,11 +19,16 @@
 
 import { DoublyLinkedList } from './doubly-linked-list';
 
-export class LRUCache {
+interface KeyAndValue<T> {
+  key: string,
+  value: T
+}
 
-  private hash: Map<number, DoublyLinkedListNode>;
+export class LRUCache<T> {
 
-  private doublyLinkedList: DoublyLinkedList;
+  private hash: Map<string, DoublyLinkedListNode<KeyAndValue<T>>>;
+
+  private doublyLinkedList: DoublyLinkedList<KeyAndValue<T>>;
 
   private cacheSize: number;
 
@@ -33,21 +38,32 @@ export class LRUCache {
     this.cacheSize = cacheSize;
   }
 
-  public add(value: number): this {
-    const node = this.hash.get(value);
+  public get(key: string): T | null {
+    const node = this.hash.get(key);
+    if (!node) {
+      return null;
+    }
+
+    this.doublyLinkedList.remove(node);
+    this.doublyLinkedList.addToHead(node.value);
+    return node.value.value;
+  }
+
+  public set(key: string, value: T): this {
+    const node = this.hash.get(key);
     if (node) {
       this.doublyLinkedList.remove(node);
-      this.doublyLinkedList.addToHead(value);
+      this.doublyLinkedList.addToHead(node.value);
       return this;
     }
 
     if (this.doublyLinkedList.getLength() === this.cacheSize) {
       const oldNode = this.doublyLinkedList.pop();
-      this.hash.delete(oldNode.value);
+      this.hash.delete(oldNode.value.key);
     }
 
-    const newNode = this.doublyLinkedList.addToHead(value);
-    this.hash.set(value, newNode);
+    const newNode = this.doublyLinkedList.addToHead({key: key, value});
+    this.hash.set(key, newNode);
 
     return this;
   }

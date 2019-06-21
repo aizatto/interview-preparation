@@ -5,8 +5,8 @@ interface LinkedListNode {
   next?: LinkedListNode,
 }
 
-interface DoublyLinkedListNode {
-  value: number,
+interface DoublyLinkedListNode<T> {
+  value: T,
   next?: DoublyLinkedListNode,
   previous?: DoublyLinkedListNode,
 }

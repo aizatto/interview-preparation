@@ -14,7 +14,7 @@ test('cache', () => {
     {insert: 1, expected: [1, 2, 4]},
   ];
   (values).forEach(({insert, expected}) => {
-    cache.add(insert);
-    expect(cache.toArray()).toEqual(expected)
+    cache.set(insert.toString(), insert);
+    expect(cache.toArray().map(({value}: any) => value)).toEqual(expected)
   });
 });

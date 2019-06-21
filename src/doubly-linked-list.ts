@@ -13,12 +13,12 @@
  * - Given a node, can remove it from the linked list
  * - Pops from the tail
  */
-export class DoublyLinkedList {
+export class DoublyLinkedList<T> {
   private length: number = 0;
 
-  private head: DoublyLinkedListNode;
+  private head: DoublyLinkedListNode<T>;
 
-  private tail: DoublyLinkedListNode;
+  private tail: DoublyLinkedListNode<T>;
 
   construct() {
     this.head = null;
@@ -29,7 +29,7 @@ export class DoublyLinkedList {
     return this.length;
   }
 
-  public addToHead(value: number) {
+  public addToHead(value: T) {
     const node = {
       value,
       next: this.head,
@@ -52,7 +52,7 @@ export class DoublyLinkedList {
    * Concerns:
    * - Doesn't validate that this node belongs to this DoublyLinkedList
    */
-  public remove(node: DoublyLinkedListNode) {
+  public remove(node: DoublyLinkedListNode<T>) {
     const {next, previous} = node;
 
     if (previous) {
@@ -74,7 +74,7 @@ export class DoublyLinkedList {
     this.length -= 1;
   }
 
-  public pop(): DoublyLinkedListNode | null {
+  public pop(): DoublyLinkedListNode<T> | null {
     if (!this.tail) {
       return null;
     }
@@ -106,7 +106,7 @@ export class DoublyLinkedList {
       node = node.next
     }
 
-    return `${values.toString()  }\n${  debug.toString()}`;;
+    return `${values.toString()}\n${  debug.toString()}`;;
   }
 
   public toArray(): number[] {
